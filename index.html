@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CCPA TEST</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Cookiebot CMP script -->
+  <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="dc56a5b3-76cc-4ac6-9489-80ee6ddf3970" data-blockingmode="auto" type="text/javascript"></script>
+</head>
+<body>
+  <h1>CCPA Test Page</h1>
+  <p>This page is configured to test the Cookiebot CMP in CCPA/CPRA mode.</p>
+
+  <!-- Required link for CCPA/CPRA -->
+  <a href="javascript:Cookiebot.doNotSell()">Do not sell or share my personal information</a>
+
+  <!-- Privacy Trigger (optional floating icon) -->
+  <script>
+    window.addEventListener('CookieConsentDeclaration', function() {
+      console.log("Cookiebot has loaded in CCPA/CPRA mode.");
+    });
+  </script>
+</body>
+</html>
