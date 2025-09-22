@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>CCPA TEST DEBUG</title>
+  <title>CCPA/GDPR Test Debug</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- Cookiebot CMP script -->
@@ -22,8 +22,8 @@
   </style>
 </head>
 <body>
-  <h1>CCPA Test Page - Debug Mode</h1>
-  <p>This page is configured to test the Cookiebot CMP in CCPA/CPRA and GDPR modes.</p>
+  <h1>CCPA/GDPR Test Page - Debug Mode</h1>
+  <p>This page is configured to test Cookiebot CMP in both CCPA/CPRA and GDPR modes.</p>
 
   <!-- Required link for CCPA/CPRA -->
   <p>
@@ -51,11 +51,22 @@
       }
     }
 
-    // Este evento dispara sempre, mesmo em CCPA sem banner
+    // Dispara sempre que o consentimento está pronto (inclui CCPA sem banner)
     window.addEventListener('CookiebotOnConsentReady', updateDebug);
 
-    // Atualiza também se o utilizador mudar as preferências
+    // Dispara quando o utilizador altera/retira consentimento
     window.addEventListener('CookieConsentDeclaration', updateDebug);
+
+    // Atualiza também depois do clique no link opt-out
+    document.addEventListener('DOMContentLoaded', () => {
+      const link = document.querySelector("a[onclick*='Cookiebot.show']");
+      if (link) {
+        link.addEventListener("click", () => {
+          console.log("⚡ User clicked opt-out link");
+          setTimeout(updateDebug, 500); // dá tempo ao CMP para aplicar alterações
+        });
+      }
+    });
   </script>
 </body>
 </html>
