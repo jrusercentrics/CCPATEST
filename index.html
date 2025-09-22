@@ -51,7 +51,10 @@
       }
     }
 
-    window.addEventListener('CookiebotOnDialogDisplay', updateDebug);
+    // Este evento dispara sempre, mesmo em CCPA sem banner
+    window.addEventListener('CookiebotOnConsentReady', updateDebug);
+
+    // Atualiza também se o utilizador mudar as preferências
     window.addEventListener('CookieConsentDeclaration', updateDebug);
   </script>
 </body>
